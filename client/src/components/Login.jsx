@@ -109,7 +109,7 @@ export default function LoginPage() {
     //   trigSuccess.fire();
     // } else {
     //   trigFail.fire();
-    // }
+    // } 
 
     const response = await fetch("https://paste-app-backend.onrender.com/api/auth/login", { 
       method: "POST",
