@@ -1,0 +1,130 @@
+/* dark column layout: teddy on top, form below */
+.login-page-dark {
+  height: 100vh;
+  background: radial-gradient(circle at top left, #0f1724, #05060a 80%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", "Poppins", sans-serif;
+}
+
+/* column card */
+.login-card-column {
+  width: 420px;
+  background: linear-gradient(180deg, rgba(28,34,50,0.98), rgba(22,26,38,0.98));
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(2,6,23,0.6);
+  overflow: hidden;
+  text-align: center;
+  animation: appear 0.6s ease;
+  padding-bottom: 20px;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* teddy top - center it */
+.teddy-top {
+  background: linear-gradient(180deg, #dfeaf3 0%, #d6e6ef 100%);
+  padding: 0; /* Remove padding to maximize space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* Set a fixed height for the upper box */
+}
+
+/* size the Rive canvas */
+.rive-animation {
+  width: 100%;
+  height: 100%;
+  max-width: none; /* Remove max-width restriction */
+  max-height: none; /* Remove max-height restriction */
+  object-fit: cover; /* Ensure the animation scales properly */
+}
+
+/* form styles */
+.form-section-dark {
+  padding: 16px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  color: #dbe7ff;
+}
+
+.form-section-dark h2 {
+  color: #ffffff;
+  margin: 6px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: #9fb0dd;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+/* labels and inputs */
+.form-section-dark label {
+  font-size: 12px;
+  color: #a8bbdf;
+  margin-top: 8px;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.form-section-dark input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(10,14,22,0.5);
+  color: #e6eefc;
+  font-size: 14px;
+  margin-bottom: 8px;
+  transition: box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.form-section-dark input:focus {
+  outline: none;
+  box-shadow: 0 6px 18px rgba(95, 115, 255, 0.12);
+  border-color: rgba(120,150,255,0.55);
+}
+
+/* button */
+.form-section-dark button {
+  margin-top: 10px;
+  background: linear-gradient(90deg, #6b7df2, #7b4edc);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-section-dark button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(100, 90, 220, 0.18);
+}
+
+/* small signup line */
+.signup-text {
+  margin-top: 12px;
+  color: #9fb0dd;
+  font-size: 13px;
+  text-align: center;
+}
+.signup-text span {
+  color: #cbdcff;
+  cursor: pointer;
+}

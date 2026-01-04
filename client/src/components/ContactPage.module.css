@@ -1,0 +1,127 @@
+/* src/components/ContactPage.module.css */
+
+.contactContainer {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    font-family: 'Inter', sans-serif; /* A clean, modern font */
+}
+
+.animationContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e1e2f; /* A deep, dark purple/blue */
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.riveAnimation {
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    max-height: 500px;
+}
+
+.formContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+    background-color: #fff;
+}
+
+.formContainer h1 {
+    font-size: 2.5rem;
+    color: #1e1e2f;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.formContainer p {
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin-bottom: 2.5rem;
+}
+
+.contactForm {
+    width: 100%;
+    max-width: 500px;
+}
+
+.inputGroup {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.inputIcon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #adb5bd;
+}
+
+.inputGroup input,
+.inputGroup textarea {
+    width: 100%;
+    padding: 1rem 1rem 1rem 2.5rem; /* Left padding for icon */
+    font-size: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f7f9fc;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inputGroup input:focus,
+.inputGroup textarea:focus {
+    outline: none;
+    border-color: #4a90e2; /* A nice blue for focus */
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.inputGroup textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #1e1e2f;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submitButton:hover {
+    background-color: #3c3c5a;
+    transform: translateY(-2px);
+}
+
+.submitButton:active {
+    transform: translateY(1px);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .contactContainer {
+        flex-direction: column;
+    }
+    .animationContainer {
+        min-height: 400px;
+        flex: auto;
+    }
+    .formContainer {
+        padding: 2.5rem;
+    }
+}

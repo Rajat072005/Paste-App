@@ -1,0 +1,47 @@
+import dotenv from "dotenv";
+dotenv.config();
+import jwt from "jsonwebtoken";
+
+export const auth = async (req, res, next) => { 
+    
+    try {
+        
+        const authHeader = req.headers.authorization;
+
+        if(!authHeader || !authHeader.startsWith("Bearer ")){
+            return res.status(401).json({
+                success : false,
+                message : "token missing"
+            })
+        }
+        const token = authHeader.split(" ")[1];
+
+
+        if(!token){
+            return res.status(401).json({
+                success : false,
+                message : "missing token",
+                
+            })
+        }
+        let decode;
+        try {
+           decode = jwt.verify(token , process.env.JWT_SECRET);
+        } catch (error) {
+            console.log(error);
+            return res.status(401).json({
+                success : false,
+                message : "invalid token or expired token"
+            })
+        }
+        req.id = decode.id;
+
+        next();
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            success : false,
+            message: "invalid token or expired token"
+        })
+    }
+};

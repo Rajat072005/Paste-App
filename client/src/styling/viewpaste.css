@@ -1,0 +1,234 @@
+/* .viewpaste-container {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #0f172a, #020617);
+  color: #e2e8f0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 4rem 2rem;
+  font-family: "Inter", sans-serif;
+}
+
+.paste-card-view {
+  width: 100%;
+  max-width: 900px;
+  background: rgba(30, 41, 59, 0.9);
+  border-radius: 18px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 10px 40px rgba(56, 189, 248, 0.25);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  animation: fadeIn 0.6s ease;
+}
+
+.view-header h1 {
+  color: #38bdf8;
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+.view-header .meta {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-bottom: 1.4rem;
+}
+
+.view-content {
+  background: #0f172a;
+  border-radius: 12px;
+  padding: 1.2rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  max-height: 70vh;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.note-view {
+  white-space: pre-wrap;
+  color: #f8fafc;
+}
+
+.code-view {
+  font-family: "Fira Code", monospace;
+  color: #38bdf8;
+}
+
+
+.view-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.8rem;
+}
+
+.btn {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: #f1f5f9;
+  border: none;
+  padding: 0.6rem 1.3rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+.copy-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+.share-btn:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+}
+.download-btn:hover {
+  background: linear-gradient(135deg, #a855f7, #7e22ce);
+}
+
+
+.not-found {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 1.2rem;
+  margin-top: 3rem;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} */
+
+.viewpaste-container {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #0f172a, #020617);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 5rem 2rem;
+  font-family: "Inter", sans-serif;
+}
+
+/* Card styling */
+.paste-card-view {
+  width: 100%;
+  max-width: 900px;
+  background: rgba(17, 24, 39, 0.95);
+  border-radius: 20px;
+  padding: 2.5rem 2.8rem;
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.25);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  animation: fadeIn 0.6s ease;
+}
+
+/* Header */
+.view-header h1 {
+  color: #60a5fa;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.4rem;
+  text-align: center;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+}
+
+/* Content */
+.view-content {
+  border-radius: 12px;
+  padding: 1.4rem 1.6rem;
+  min-height: 200px;
+  max-height: 70vh;
+  overflow-x: auto;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+  transition: background 0.3s ease;
+}
+
+/* Code Paste Style */
+.code-view {
+  background: #0b1120;
+  color: #a5f3fc;
+  font-family: "Fira Code", monospace;
+  font-size: 1rem;
+  border-left: 5px solid #38bdf8;
+}
+
+/* Note Paste Style */
+.note-view {
+  background: #1e293b;
+  color: #f8fafc;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  border-left: 5px solid #34d399;
+  white-space: pre-wrap;
+}
+
+/* Action Buttons */
+.view-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: #f1f5f9;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+.copy-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+}
+.share-btn:hover {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+.download-btn:hover {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+/* Empty state */
+.not-found {
+  color: #94a3b8;
+  font-size: 1.2rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
