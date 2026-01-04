@@ -99,7 +99,7 @@ const ViewPaste = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/paste/view/${id}`,
+          `https://paste-app-backend.onrender.com/api/paste/view/${id}`,
           {
             method : "GET",
             headers: {

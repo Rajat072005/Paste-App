@@ -33,7 +33,7 @@ const Home = () => {
 
     async function fetchPaste() {
       const token = localStorage.getItem("token")
-      const response = await fetch(`http://localhost:5000/api/paste/view/${pasteId}`, {
+      const response = await fetch(`https://paste-app-backend.onrender.com/api/paste/view/${pasteId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -61,7 +61,7 @@ const Home = () => {
       return;
     }
 
-    const response = await fetch(`http://localhost:5000/api/paste/update/${pasteId}`, {
+    const response = await fetch(`https://paste-app-backend.onrender.com/api/paste/update/${pasteId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +91,7 @@ const Home = () => {
       toast.error("please login first");
       return;
     }
-    const response = await fetch("http://localhost:5000/api/paste/CreatePaste", {
+    const response = await fetch("https://paste-app-backend.onrender.com/api/paste/CreatePaste", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

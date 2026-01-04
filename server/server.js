@@ -15,8 +15,11 @@ const app = express();
 
 // Allows frontend (port 3000) to talk to backend (5000)
 app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true,
+  origin: [
+    "http://localhost:5173", // for local dev
+    "https://pasteapp-swart.vercel.app" // your deployed frontend
+  ],
+  credentials: true, // if you are using cookies
 }));
 
 // Allows JSON data from frontend

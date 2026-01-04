@@ -161,7 +161,7 @@ const AllPastes = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/paste/my-pastes",
+        "https://paste-app-backend.onrender.com/api/paste/my-pastes",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -200,7 +200,7 @@ const AllPastes = () => {
         return;
       }
       try {
-        const response = await fetch(`http://localhost:5000/api/paste/delete/${id}`, {
+        const response = await fetch(`https://paste-app-backend.onrender.com/api/paste/delete/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
