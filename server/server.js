@@ -17,7 +17,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173", // for local dev
-    "https://pasteapp-swart.vercel.app" // your deployed frontend
+    "https://paste-app-five-hazel.vercel.app/" // your deployed frontend
   ],
   credentials: true, // if you are using cookies
 }));
