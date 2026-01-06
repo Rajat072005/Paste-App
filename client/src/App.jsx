@@ -33,6 +33,7 @@ function RoutesWithTransition() {
   return (
     
     <>
+
     
       {/* Suspense fallback handles the case when a lazy chunk is still loading */}
       <Suspense fallback={<Loading visible={true} loop={true} />}>
@@ -58,6 +59,7 @@ function App() {
 
   return (
     <>
+    
       <BrowserRouter>
         <button className="toggle-btn" onClick={toggleNavbar}>☰</button>
         <Navbar isOpen={isOpen} toggleNavbar={toggleNavbar} />
