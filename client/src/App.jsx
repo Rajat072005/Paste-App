@@ -4,6 +4,9 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import toast, { Toaster } from 'react-hot-toast';
 import Loading from './components/Loading';
+import { useLoader } from "./context/LoaderContext";
+import { setupInterceptors } from "./api/interceptors";
+import Loader from "./components/Loader";
 
 // lazy load pages
 const Home = React.lazy(() => import('./components/Home'));
@@ -48,7 +51,8 @@ function RoutesWithTransition() {
       </Suspense>
 
       {/* Overlay on every navigation for a consistent transition effect */}
-      <Loading visible={transitioning} loop={true} />
+      {/* <Loading visible={transitioning} loop={true} /> */}
+      <Loading visible={transitioning && !loading} loop={true} />
     </>
   );
 }
@@ -56,6 +60,12 @@ function RoutesWithTransition() {
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleNavbar = () => setIsOpen(prev => !prev);
+  const { loading, setLoading } = useLoader();
+
+  useEffect(() => {
+    setupInterceptors(setLoading);
+  }, [setLoading]);
+
 
   return (
     <>
@@ -63,6 +73,9 @@ function App() {
       <BrowserRouter>
         <button className="toggle-btn" onClick={toggleNavbar}>☰</button>
         <Navbar isOpen={isOpen} toggleNavbar={toggleNavbar} />
+
+        {/* ✅ GLOBAL API LOADER */}
+        {loading && <Loader />}
         <RoutesWithTransition />
       </BrowserRouter>
       <Toaster />
