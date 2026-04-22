@@ -5,6 +5,7 @@ import "../styling/LoginPage.css";
 import { NavLink ,  } from "react-router";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { api } from "../api/api";
 
 export default function LoginPage() {
   const { rive, RiveComponent } = useRive({
@@ -105,35 +106,19 @@ export default function LoginPage() {
       return;
     }
 
-    // if (email === "test@example.com" && password === "1234") {
-    //   trigSuccess.fire();
-    // } else {
-    //   trigFail.fire();
-    // }
+    try {
+      const response = await api.post("/auth/register", { UserName, email, password, ConfirmPassword });
+      const data = response.data;
 
-    const response = await fetch("https://paste-app-backend.onrender.com/api/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ UserName , email, password , ConfirmPassword }),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      // Step 3: Save token in localStorage
       localStorage.setItem("token", data.token);
       trigSuccess.fire();
-      
-      toast.success("SignUp successful!")
+      toast.success("SignUp successful!");
       navigate("/");
-      // redirect or update UI
-    } else {
+    } catch (error) {
       trigFail.fire();
-      toast.error(data.message);
+      const message = error.response?.data?.message || "Registration failed";
+      toast.error(message);
     }
-    
   };
 
 

@@ -82,6 +82,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../styling/viewpaste.css";
 import { Copy, Share2, Download } from "lucide-react";
+import { api } from "../api/api";
 
 import "prismjs/themes/prism-tomorrow.css"; // VS Code–like dark theme
 import "prismjs/components/prism-jsx"; // optional, for JS/React syntax
@@ -98,22 +99,15 @@ const ViewPaste = () => {
       if (!token) return;
 
       try {
-        const response = await fetch(
-          `https://paste-app-backend.onrender.com/api/paste/view/${id}`,
-          {
-            method : "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await api.get(`/paste/view/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-        const data = await response.json();
-        console.log("data : ",data);
-        setPaste(data.paste);
-
+        setPaste(response.data.paste);
       } catch (error) {
-      console.log("Error fetching paste", error);
+        console.log("Error fetching paste", error);
       }
     }
     viewPaste();

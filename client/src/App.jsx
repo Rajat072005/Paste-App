@@ -6,7 +6,6 @@ import toast, { Toaster } from 'react-hot-toast';
 import Loading from './components/Loading';
 import { useLoader } from "./context/LoaderContext";
 import { setupInterceptors } from "./api/interceptors";
-import Loader from "./components/Loader";
 
 // lazy load pages
 const Home = React.lazy(() => import('./components/Home'));
@@ -76,7 +75,7 @@ function App() {
         <Navbar isOpen={isOpen} toggleNavbar={toggleNavbar} />
 
         {/* ✅ GLOBAL API LOADER */}
-        {loading && <Loader />}
+        <Loading visible={loading} />
         <RoutesWithTransition />
       </BrowserRouter>
       <Toaster />

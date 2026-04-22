@@ -6,6 +6,7 @@ import { NavLink, } from "react-router";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { getToken ,setToken,removeToken , isLoggedIn } from "../utils/auth";
+import { api } from "../api/api";
 
 export default function LoginPage() {
   const { rive, RiveComponent } = useRive({
@@ -105,40 +106,20 @@ export default function LoginPage() {
       return;
     }
 
-    // if (email === "test@example.com" && password === "1234") {
-    //   trigSuccess.fire();
-    // } else {
-    //   trigFail.fire();
-    // } 
+    try {
+      const response = await api.post("/auth/login", { email, password });
+      const data = response.data;
 
-    const response = await fetch("https://paste-app-backend.onrender.com/api/auth/login", { 
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
       // Step 3: Save token in localStorage
-      setToken(data.token)
+      setToken(data.token);
       trigSuccess.fire();
       toast.success("login successful");
-      
       navigate("/");
-      
-      //alert("Login successful!");
-      // redirect or update UI
-    } else {
+    } catch (error) {
       trigFail.fire();
-      
-      toast.error(data.message);
-      
-      //alert(data.message || "Login failed");
+      const message = error.response?.data?.message || "Login failed";
+      toast.error(message);
     }
-    
   };
 
 

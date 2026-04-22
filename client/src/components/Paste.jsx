@@ -144,6 +144,7 @@ import {
   Search,
 } from "lucide-react";
 import toast from "react-hot-toast";
+import { api } from "../api/api";
 
 
 
@@ -160,16 +161,13 @@ const AllPastes = () => {
     if (!token) return;
 
     try {
-      const response = await fetch(
-        "https://paste-app-backend.onrender.com/api/paste/my-pastes",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await api.get("/paste/my-pastes", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-      const data = await response.json();
+      const data = response.data;
 
       if (data.success) {
         setBackendPastes(data.pastes);
@@ -200,28 +198,29 @@ const AllPastes = () => {
         return;
       }
       try {
-        const response = await fetch(`https://paste-app-backend.onrender.com/api/paste/delete/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+        const response = await api.delete(`/paste/delete/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-      const data = await response.json();
-      
-      if(response.ok){
-        //alert("paste deleted");
-        //fetchMyPastes();
-      }
-      else{
-        alert(data.message);
-      }
+        const data = response.data;
+        
+        if(response.status === 200){
+          //alert("paste deleted");
+          //fetchMyPastes();
+        }
+        else{
+          alert(data.message);
+        }
 
-    // Remove deleted paste from UI
-    setBackendPastes((prev) => prev.filter((p) => p._id !== id));
-  } catch (error) {
-    console.error("Delete failed", error);
-  }
+      // Remove deleted paste from UI
+      setBackendPastes((prev) => prev.filter((p) => p._id !== id));
+    } catch (error) {
+      console.error("Delete failed", error);
+      const message = error.response?.data?.message || "Delete failed";
+      alert(message);
+    }
 };
 
   };

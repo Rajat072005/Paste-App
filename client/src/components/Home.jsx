@@ -13,6 +13,7 @@ import { cpp } from "@codemirror/lang-cpp";
 import { java } from "@codemirror/lang-java";
 import { python } from "@codemirror/lang-python";
 import { getToken ,setToken, removeToken , isLoggedIn } from "../utils/auth";
+import { api } from "../api/api";
 
 const Home = () => {
   const [title, setTitle] = useState("");
@@ -33,22 +34,20 @@ const Home = () => {
 
     async function fetchPaste() {
       const token = localStorage.getItem("token")
-      const response = await fetch(`https://paste-app-backend.onrender.com/api/paste/view/${pasteId}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-      
-    });
-    const data = await response.json();
-    console.log("API RESPONSE 👉", data);
-    setTitle(data.paste.title);
-    setContent(data.paste.content);
-    setIsEdit(true);
-    // if(response.ok){
-      
-    // }
+      try {
+        const response = await api.get(`/paste/view/${pasteId}`, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+        const data = response.data;
+        console.log("API RESPONSE 👉", data);
+        setTitle(data.paste.title);
+        setContent(data.paste.content);
+        setIsEdit(true);
+      } catch (error) {
+        console.error("Error fetching paste", error);
+      }
     }
     fetchPaste();
    }, [pasteId]);
@@ -61,19 +60,20 @@ const Home = () => {
       return;
     }
 
-    const response = await fetch(`https://paste-app-backend.onrender.com/api/paste/update/${pasteId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-      body: JSON.stringify({title , content}),
-    });
-    const data = await response.json();
+    try {
+      const response = await api.patch(`/paste/update/${pasteId}`, { title, content }, {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      });
+      const data = response.data;
 
-    if(data.success){
-      toast.success("paste updated successfully");
-      navigate("/pastes")
+      if(data.success){
+        toast.success("paste updated successfully");
+        navigate("/pastes")
+      }
+    } catch (error) {
+      console.error("Update failed", error);
     }
   }
   async function  createPaste() {
@@ -91,30 +91,26 @@ const Home = () => {
       toast.error("please login first");
       return;
     }
-    const response = await fetch("https://paste-app-backend.onrender.com/api/paste/CreatePaste", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-      body: JSON.stringify({title , content}),
-    });
+    try {
+      const response = await api.post("/paste/CreatePaste", { title, content }, {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      });
 
-    const data = await response.json();
-    if(response.status === 401 ){
-      removeToken();
-      toast.error(data.message);
-      return;
-    }
-    if(response.ok){
+      const data = response.data;
       toast.success(data.message);
       setTitle(""); 
       setContent("");
       setSearchParams({});
-      
-    }
-    else{
-      toast.error(data.message);
+    } catch (error) {
+      const data = error.response?.data || {};
+      if(error.response?.status === 401 ){
+        removeToken();
+        toast.error(data.message || "Session expired");
+        return;
+      }
+      toast.error(data.message || "Failed to create paste");
     }
     //console.log("RESPONSE:", data)
     //pasteId ? dispatch(updateToPaste(paste)) : dispatch(addToPaste(paste));
