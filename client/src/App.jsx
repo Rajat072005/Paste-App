@@ -17,6 +17,7 @@ const Login = React.lazy(() => import('./components/Login'));
 const Register = React.lazy(() => import('./components/Register'));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 
 function RoutesWithTransition() {
+  const { loading } = useLoader();
   const location = useLocation();
   const [transitioning, setTransitioning] = useState(false);
 
